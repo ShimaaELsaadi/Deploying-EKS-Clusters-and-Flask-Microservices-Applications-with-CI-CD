@@ -9,9 +9,9 @@ run:
 	docker container rm
 	docker run -d -p 5000:5000 microsevicesapp
 test:
-    sleep 5
+    
 	curl http://localhost:5000/users
-	sleep 5
+	
 	curl http://localhost:5000/products
 
 push:
