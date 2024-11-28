@@ -2,6 +2,7 @@ include .env
 .PHONY: all
 
 build:
+	docker image rm
 	docker build -t microsevicesapp .
 
 run:
