@@ -5,6 +5,7 @@ build:
 	docker build -t microsevicesapp .
 
 run:
+	docker container rm
 	docker run -d -p 5000:5000 microsevicesapp
 test:
     sleep 5
