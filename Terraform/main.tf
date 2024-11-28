@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-west-2"
+  region = "eu-west-1"
 }
 
 resource "aws_vpc" "microservicesapp_vpc" {
@@ -14,7 +14,7 @@ resource "aws_subnet" "microservicesapp_subnet" {
   count = 2
   vpc_id                  = aws_vpc.microservicesapp_vpc.id
   cidr_block              = cidrsubnet(aws_vpc.microservicesapp_vpc.cidr_block, 8, count.index)
-  availability_zone       = element(["eu-west-2a", "eu-west-2c"], count.index)
+  availability_zone       = element(["eu-west-1a", "eu-west-1c"], count.index)
   map_public_ip_on_launch = true
 
   tags = {
