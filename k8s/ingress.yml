@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: www.microservices.com
+  - host: www.pymicroservices.com
     http:
       paths:
       - path: /users
