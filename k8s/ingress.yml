@@ -15,14 +15,14 @@ spec:
           service:
             name: microservicesapp-users
             port:
-              number: 80
+              number: 5000
       - path: /products
         pathType: Exact
         backend:
           service:
             name: microservicesapp-products
             port:
-              number: 80
+              number: 5000
       - path: /
         pathType: Prefix
         backend:
