@@ -13,6 +13,7 @@ run:
 	docker run -d --name microsevicesapp -p 5000:5000 microsevicesapp
 # Test the application
 test:
+	sleep 5
 	curl http://localhost:5000/users
 	curl http://localhost:5000/products
 	
