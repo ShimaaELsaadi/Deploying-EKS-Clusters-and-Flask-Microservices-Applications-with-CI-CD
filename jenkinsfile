@@ -37,25 +37,6 @@ pipeline {
                 }
             }
         }
-/*        stage('Provisioning') {
-            steps {
-                withAWS(credentials: 'AWS_CREDS', region: 'us-east-1') {
-                 dir('Terraform') {
-                    script {
-                        sh '''
-                        terraform init
-                        terraform validate
-                        terraform plan 
-                        terraform apply -auto-approve 
-                        '''
-                    env.SERVER_URL = sh(script: 'aws eks describe-cluster --name microservicesapp-cluster --query "cluster.endpoint" --output text --region eu-west-2', returnStdout: true).trim()
-
-
-                    }
-                     }
-        }
-        }*/
-
         stage('K8s Deploy') {
             steps {
             withAWS(credentials: 'AWS_CREDS', region: 'eu-west-2'){
@@ -76,5 +57,5 @@ pipeline {
         }
 
         
-    }  // Closing stages
-}  // Closing pipeline
+    }  
+}  

@@ -13,3 +13,12 @@ output "vpc_id" {
 output "subnet_ids" {
   value = aws_subnet.microservicesapp_subnet[*].id
 }
+# Output the Cluster Endpoint and Token
+output "cluster_endpoint" {
+  value = data.aws_eks_cluster.microservicesapp.endpoint
+}
+
+output "cluster_token" {
+  value = data.aws_eks_cluster_auth.microservicesapp.token
+  sensitive = true
+}
