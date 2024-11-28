@@ -9,14 +9,13 @@ build:
 
 # Run the application
 run:
-	docker rm -f $(docker ps -a -q) || true
-	docker run -d -p 5000:5000 microsevicesapp
-
+	docker rm -f microsevicesapp || true
+	docker run -d --name microsevicesapp -p 5000:5000 microsevicesapp
 # Test the application
 test:
 	curl http://localhost:5000/users
 	curl http://localhost:5000/products
-	docker rm -f $(docker ps -a -q) || true
+	
 
 # Push the application image to the Docker registry
 push:

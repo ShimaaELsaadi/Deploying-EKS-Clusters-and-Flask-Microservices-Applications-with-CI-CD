@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+   
     
     stages {
         stage('Git Checkout') {
@@ -52,10 +52,11 @@ pipeline {
                     }
                      }
         }
-        }
+        }*/
 
         stage('K8s Deploy') {
             steps {
+               env.SERVER_URL= "https://FF15034FDA4601369F6244D2D4A43DCB.gr7.eu-west-2.eks.amazonaws.com" 
                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' microservicesapp-cluster', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: env.SERVER_URL]]) {
                 dir('k8s') {
                     sh '''
@@ -67,7 +68,7 @@ pipeline {
                 }
             }
         }
-        }*/
+        }
 
         
     }  // Closing stages
