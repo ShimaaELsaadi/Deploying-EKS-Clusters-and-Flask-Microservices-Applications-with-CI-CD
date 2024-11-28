@@ -1,4 +1,4 @@
-# Include .env (ensure .env is loaded before this)
+# Include .env 
 include .env
 .PHONY: all build run test push
 

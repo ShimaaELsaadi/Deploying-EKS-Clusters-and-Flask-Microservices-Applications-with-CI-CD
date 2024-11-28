@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SERVER_URL = 'https://FF15034FDA4601369F6244D2D4A43DCB.gr7.eu-west-2.eks.amazonaws.com'
+        SERVER_URL = 'https://5D8872168890BE19E42E48ADA5D51183.gr7.eu-west-1.eks.amazonaws.com'
     }
     
     stages {
