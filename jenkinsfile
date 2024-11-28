@@ -58,16 +58,20 @@ pipeline {
 
         stage('K8s Deploy') {
             steps {
-               withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' microservicesapp-cluster', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: env.SERVER_URL]]) {
-                dir('k8s') {
-                    sh '''
-                    kubectl apply -f deployment.yml
-                    kubectl apply -f service.yml
-                    kubectl apply -f ingress.yml
-                    '''
-                    sleep 20
+            withAWS(credentials: 'AWS_CREDS', region: 'eu-west-2'){
+                script{
+                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' microservicesapp-cluster', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: env.SERVER_URL]]) {
+                    dir('k8s') {
+                        sh '''
+                        kubectl apply -f deployment.yml
+                        kubectl apply -f service.yml
+                        kubectl apply -f ingress.yml
+                        '''
+                        sleep 20
                 }
             }
+        }
+        }
         }
         }
 
