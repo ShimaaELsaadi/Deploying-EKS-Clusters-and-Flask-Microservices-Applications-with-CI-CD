@@ -1,19 +1,24 @@
+# Include .env (ensure .env is loaded before this)
 include .env
-.PHONY: all
+.PHONY: all build run test push
 
+# Build the application and remove all existing images
 build:
-    docker rmi $(docker images -a -q)
+	docker rmi $(docker images -a -q) || true
 	docker build -t microsevicesapp .
 
+# Run the application
 run:
-	docker rm -f $(docker ps -a -q)
+	docker rm -f $(docker ps -a -q) || true
 	docker run -d -p 5000:5000 microsevicesapp
-test:
-    
-	curl http://localhost:5000/users
-	
-	curl http://localhost:5000/products
 
+# Test the application
+test:
+	curl http://localhost:5000/users
+	curl http://localhost:5000/products
+	docker rm -f $(docker ps -a -q) || true
+
+# Push the application image to the Docker registry
 push:
 	docker tag microsevicesapp:latest ${DOCKER_USER}/microsevicesapp:${DOCKER_TAG}
 	docker push ${DOCKER_USER}/microsevicesapp:${DOCKER_TAG}
