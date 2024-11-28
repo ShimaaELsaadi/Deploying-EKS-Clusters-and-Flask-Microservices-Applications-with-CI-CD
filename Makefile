@@ -2,11 +2,11 @@ include .env
 .PHONY: all
 
 build:
-	docker image rm
+    docker rmi $(docker images -a -q)
 	docker build -t microsevicesapp .
 
 run:
-	docker container rm
+	docker rm -f $(docker ps -a -q)
 	docker run -d -p 5000:5000 microsevicesapp
 test:
     
