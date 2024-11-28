@@ -173,7 +173,7 @@ resource "aws_iam_role_policy_attachment" "microservicesapp_node_group_registry_
   role       = aws_iam_role.microservicesapp_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
-# Get the EKS Cluster Information
+
 data "aws_eks_cluster" "microservicesapp" {
   name = aws_eks_cluster.microservicesapp.name
 }
@@ -182,7 +182,6 @@ data "aws_eks_cluster_auth" "microservicesapp" {
   name = aws_eks_cluster.microservicesapp.name
 }
 
-# Configure Kubernetes Provider
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.microservicesapp.endpoint
   token                  = data.aws_eks_cluster_auth.microservicesapp.token
