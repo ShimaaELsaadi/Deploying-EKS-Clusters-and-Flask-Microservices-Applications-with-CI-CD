@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservicesapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: microservicesapp
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: microservicesapp
+    spec:
+      containers:
+      - name: microservicesapp
+        image: "python-microservice:latest"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /users
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /users
+            port: http
