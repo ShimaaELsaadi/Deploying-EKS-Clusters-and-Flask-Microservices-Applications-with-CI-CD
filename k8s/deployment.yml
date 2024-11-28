@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: microservicesapp
-        image: python-microservice:latest
+        image: shaimaamelsaadi/microsevicesapp:latest
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
